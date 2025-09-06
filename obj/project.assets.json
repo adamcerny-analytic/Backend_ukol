@@ -3578,19 +3578,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\adamb\\.nuget\\packages\\": {}
+    "/Users/adam.cerny/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\adamb\\OneDrive\\Plocha\\Zadani\\RequestsAPI\\RequestsAPI.csproj",
+      "projectUniqueName": "/Users/adam.cerny/Desktop/Backend-ukol/Backend_ukol/RequestsAPI.csproj",
       "projectName": "RequestsAPI",
-      "projectPath": "C:\\Users\\adamb\\OneDrive\\Plocha\\Zadani\\RequestsAPI\\RequestsAPI.csproj",
-      "packagesPath": "C:\\Users\\adamb\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\adamb\\OneDrive\\Plocha\\Zadani\\RequestsAPI\\obj\\",
+      "projectPath": "/Users/adam.cerny/Desktop/Backend-ukol/Backend_ukol/RequestsAPI.csproj",
+      "packagesPath": "/Users/adam.cerny/.nuget/packages/",
+      "outputPath": "/Users/adam.cerny/Desktop/Backend-ukol/Backend_ukol/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\adamb\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/Users/adam.cerny/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -3662,7 +3662,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.304/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

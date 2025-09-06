@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using RequestsAPI.Data;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +10,12 @@ builder.Services.AddDbContext<RequestsDbContext>(options =>
     options.UseSqlite("Data Source=requests.db"));
 
 // ====== Přidání Controllers ======
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
+
 
 // ====== Přidání Swagger/OpenAPI ======
 builder.Services.AddEndpointsApiExplorer();

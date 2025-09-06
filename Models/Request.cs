@@ -5,9 +5,9 @@ namespace RequestsAPI.Models
 {
     public enum Priority
     {
-        Low,
-        Medium,
-        High
+        Low = 0,
+        Medium = 1,
+        High = 2
     }
 
     public class Request
