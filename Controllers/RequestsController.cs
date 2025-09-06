@@ -1,75 +1,54 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using RequestsAPI.Data;
 using RequestsAPI.Models;
+using RequestsAPI.Services;
 
-namespace RequestsAPI.Controllers;
-
-[ApiController]
-[Route("api/[controller]")]
-public class RequestsController : ControllerBase
+namespace RequestsAPI.Controllers
 {
-    private readonly RequestsDbContext _context;
-
-    public RequestsController(RequestsDbContext context)
+    [Route("api/[controller]")]
+    [ApiController]
+    public class RequestsController : ControllerBase
     {
-        _context = context;
-    }
+        private readonly RequestService _service;
 
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<Request>>> GetRequests()
-        => await _context.Requests.ToListAsync();
-
-    [HttpGet("{id}")]
-    public async Task<ActionResult<Request>> GetRequest(int id)
-    {
-        var request = await _context.Requests.FindAsync(id);
-        if (request == null) return NotFound();
-        return request;
-    }
-
-    [HttpPost]
-    public async Task<ActionResult<Request>> CreateRequest([FromBody] Request request)
-    {
-        if (string.IsNullOrWhiteSpace(request.Title))
-            return BadRequest("Title is required.");
-
-        request.CreatedAt = DateTime.UtcNow;
-        request.UpdatedAt = DateTime.UtcNow;
-
-        _context.Requests.Add(request);
-        await _context.SaveChangesAsync();
-
-        return CreatedAtAction(nameof(GetRequest), new { id = request.Id }, request);
-    }
-
-    [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateRequest(int id, [FromBody] Request request)
-    {
-        if (id != request.Id) return BadRequest("ID mismatch.");
-
-        request.UpdatedAt = DateTime.UtcNow;
-        _context.Entry(request).State = EntityState.Modified;
-
-        try { await _context.SaveChangesAsync(); }
-        catch (DbUpdateConcurrencyException)
+        public RequestsController(RequestService service)
         {
-            if (!_context.Requests.Any(e => e.Id == id)) return NotFound();
-            else throw;
+            _service = service;
         }
 
-        return NoContent();
-    }
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Request>>> Get() =>
+            Ok(await _service.GetAllAsync());
 
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteRequest(int id)
-    {
-        var request = await _context.Requests.FindAsync(id);
-        if (request == null) return NotFound();
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Request>> Get(int id)
+        {
+            var request = await _service.GetByIdAsync(id);
+            if (request == null) return NotFound();
+            return Ok(request);
+        }
 
-        _context.Requests.Remove(request);
-        await _context.SaveChangesAsync();
+        [HttpPost]
+        public async Task<ActionResult<Request>> Post(Request request)
+        {
+            await _service.CreateAsync(request);
+            return CreatedAtAction(nameof(Get), new { id = request.Id }, request);
+        }
 
-        return NoContent();
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, Request request)
+        {
+            request.Id = id;
+            var updated = await _service.UpdateAsync(request);
+            if (!updated) return NotFound();
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var deleted = await _service.DeleteAsync(id);
+            if (!deleted) return NotFound();
+            return NoContent();
+        }
     }
 }

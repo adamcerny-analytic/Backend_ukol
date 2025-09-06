@@ -1,40 +1,36 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
 using RequestsAPI.Data;
+using RequestsAPI.Services;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ====== Přidání DbContextu s SQLite ======
-builder.Services.AddDbContext<RequestsDbContext>(options =>
+    builder.Services.AddDbContext<RequestsDbContext>(options =>
     options.UseSqlite("Data Source=requests.db"));
 
-// ====== Přidání Controllers ======
+// Přidání RequestService
+builder.Services.AddScoped<RequestService>();
+
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
     });
 
-
-// ====== Přidání Swagger/OpenAPI ======
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Requests API", Version = "v1" });
-});
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// ====== Middleware ======
-if (app.Environment.IsDevelopment())
+    if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(c =>
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Requests API v1"));
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
+
 app.MapControllers();
+
 app.Run();
