@@ -21,9 +21,11 @@ namespace RequestsAPI.Services
         public async Task<Request?> GetByIdAsync(int id) =>
             await _context.Requests.FindAsync(id);
 
-        // Vytvořit nový požadavek (CreatedAt a UpdatedAt se nastaví automaticky)
+        // Vytvořit nový požadavek
         public async Task<Request> CreateAsync(Request request)
         {
+            // MSSQL automaticky generuje Id, takže žádná explicitní hodnota
+            request.Id = 0;
             request.CreatedAt = DateTime.UtcNow;
             request.UpdatedAt = DateTime.UtcNow;
 
@@ -32,10 +34,10 @@ namespace RequestsAPI.Services
             return request;
         }
 
-        // Aktualizovat požadavek (UpdatedAt se nastaví automaticky)
-        public async Task<bool> UpdateAsync(Request request)
+        // Aktualizovat požadavek
+        public async Task<bool> UpdateAsync(int id, Request request)
         {
-            var existing = await _context.Requests.FindAsync(request.Id);
+            var existing = await _context.Requests.FindAsync(id);
             if (existing == null) return false;
 
             existing.Title = request.Title;
