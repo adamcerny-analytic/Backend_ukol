@@ -1,5 +1,14 @@
 Terminal ve VSC
 1. docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Heslo123" -p 1433:1433 --name sqlserver2022 -d mcr.microsoft.com/mssql/server:2022-latest
+
+
+
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Heslo123" \
+   -p 1433:1433 --name sqlserver2022 \
+   --platform linux/amd64 \
+   -d mcr.microsoft.com/mssql/server:2022-latest
+
+
 2. docker ps
 
 Otevřít VS Code SQL extension nebo Azure Data Studio
