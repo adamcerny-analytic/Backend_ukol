@@ -30,7 +30,7 @@ namespace RequestsAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Request>> Post(Request request)
         {
-            // NEPOSÍLEJ Id – MSSQL ho generuje sám
+           
             request.Id = 0;
             await _service.CreateAsync(request);
             return CreatedAtAction(nameof(Get), new { id = request.Id }, request);
@@ -39,7 +39,7 @@ namespace RequestsAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, Request request)
         {
-            var updated = await _service.UpdateAsync(id, request); // dva parametry
+            var updated = await _service.UpdateAsync(id, request); 
             if (!updated) return NotFound();
             return NoContent();
         }
