@@ -24,7 +24,7 @@ namespace RequestsAPI.Services
         // Vytvořit nový požadavek
         public async Task<Request> CreateAsync(Request request)
         {
-            // MSSQL automaticky generuje Id, takže žádná explicitní hodnota
+            
             request.Id = 0;
             request.CreatedAt = DateTime.UtcNow;
             request.UpdatedAt = DateTime.UtcNow;

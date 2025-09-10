@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "d2M/SB9rIAc=",
+  "dgSpecHash": "EwWndszoX5g=",
   "success": true,
-  "projectFilePath": "/Users/adam.cerny/Desktop/Testík/Backend_ukol/RequestsAPI.csproj",
+  "projectFilePath": "/Users/adam.cerny/Desktop/Test_1/RequestsAPI.csproj",
   "expectedPackageFiles": [
     "/Users/adam.cerny/.nuget/packages/azure.core/1.38.0/azure.core.1.38.0.nupkg.sha512",
     "/Users/adam.cerny/.nuget/packages/azure.identity/1.11.4/azure.identity.1.11.4.nupkg.sha512",

@@ -1,0 +1,6 @@
+requests.db
+bin/
+obj/
+*.user
+*.vs
+*.vscode

@@ -5517,11 +5517,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/adam.cerny/Desktop/Testík/Backend_ukol/RequestsAPI.csproj",
+      "projectUniqueName": "/Users/adam.cerny/Desktop/Test_1/RequestsAPI.csproj",
       "projectName": "RequestsAPI",
-      "projectPath": "/Users/adam.cerny/Desktop/Testík/Backend_ukol/RequestsAPI.csproj",
+      "projectPath": "/Users/adam.cerny/Desktop/Test_1/RequestsAPI.csproj",
       "packagesPath": "/Users/adam.cerny/.nuget/packages/",
-      "outputPath": "/Users/adam.cerny/Desktop/Testík/Backend_ukol/obj/",
+      "outputPath": "/Users/adam.cerny/Desktop/Test_1/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/adam.cerny/.nuget/NuGet/NuGet.Config"

@@ -5,11 +5,11 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ===== Použití MSSQL místo SQLite =====
+
 builder.Services.AddDbContext<RequestsDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Přidání RequestService
+
 builder.Services.AddScoped<RequestService>();
 
 builder.Services.AddControllers()
