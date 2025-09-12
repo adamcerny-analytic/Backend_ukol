@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RequestsAPI.Data;
 
@@ -11,9 +12,11 @@ using RequestsAPI.Data;
 namespace RequestsAPI.Migrations
 {
     [DbContext(typeof(RequestsDbContext))]
-    partial class RequestsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250912084037_AddAuditLog")]
+    partial class AddAuditLog
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

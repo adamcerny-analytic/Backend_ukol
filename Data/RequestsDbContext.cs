@@ -8,4 +8,5 @@ public class RequestsDbContext : DbContext
     public RequestsDbContext(DbContextOptions<RequestsDbContext> options) : base(options) { }
 
     public DbSet<Request> Requests { get; set; }
+    public DbSet<AuditLog> AuditLogs { get; set; }
 }
